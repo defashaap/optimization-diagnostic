@@ -1,0 +1,77 @@
+{
+  "horizon": { "hours": 24, "dt_s": 3600 },
+
+  "reservoirs": {
+    "r1": { "area_m2": 850000, "h_min": 118.0, "h_max": 124.0, "h0": 121.5 }
+  },
+
+  "tailwaters": {
+    "t1": { "head": 96.0 }
+  },
+
+  "topology": {
+    "edges": [
+      { "id": "e1", "from": "r1", "to": "t1" }
+    ]
+  },
+
+  "inflows": {
+    "r1": {
+      "type": "list",
+      "values": [
+        18.0, 16.0, 15.0, 14.0, 13.0, 15.0,
+        20.0, 24.0, 28.0, 31.0, 34.0, 36.0,
+        33.0, 30.0, 27.0, 25.0, 23.0, 22.0,
+        21.0, 20.0, 19.0, 18.0, 17.0, 16.0, 12.0, 12.0
+      ]
+    }
+  },
+
+  "price_eur_per_mwh": [
+    86.09, 73.90, 88.03, 82.28, 82.84, 85.95,
+    106.32, 114.09, 118.21, 111.80, 94.17, 82.68,
+    74.02, 61.45, 40.28, 48.09, 59.63, 68.66,
+    91.20, 105.43, 106.85, 109.41, 111.13, 100.81
+  ],
+
+  "components": {
+    "c1": {
+      "type": "turbine",
+      "edge": "e1",
+      "q_max": 70.0,
+      "min_on_ratio": 0.35,
+      "power_planes": {
+        "format": "alpha_beta_gamma_delta",
+        "planes": [
+          [1.000000, -0.300000, 0.000000, 0.000000],
+          [1.000000, 0.000000, -0.840000, 0.000000]
+        ]
+      }
+    },
+    "c2": {
+      "type": "spill",
+      "edge": "e1",
+      "q_max": 300.0,
+      "trigger": {
+        "head_reservoir": "r1",
+        "hp_ge": 123.8,
+        "q_component": "c1",
+        "q_ge": 70.0
+      }
+    }
+  },
+
+  "initial_flows": {
+    "c1": null,
+    "c2": null
+  },
+
+  "constraints": {
+    "exclusive": [],
+    "soft_bounds": { "reservoirs": ["r1"] }
+  },
+
+  "objectives": {
+    "lexicographic": ["min_total_safety_violation", "max_net_power"]
+  }
+}

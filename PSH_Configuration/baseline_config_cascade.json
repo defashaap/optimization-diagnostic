@@ -1,0 +1,243 @@
+{
+  "horizon": {
+    "hours": 24,
+    "dt_s": 3600
+  },
+  "reservoirs": {
+    "r_upper": {
+      "area_m2": 197500,
+      "h_min": 516.7,
+      "h_max": 540.7,
+      "h0": 540.0
+    },
+    "r_middle": {
+      "area_m2": 300000,
+      "h_min": 300.0,
+      "h_max": 320.0,
+      "h0": 315.0
+    },
+    "r_lower": {
+      "area_m2": 1650000,
+      "h_min": 202.4,
+      "h_max": 204.4,
+      "h0": 203.0
+    }
+  },
+  "tailwaters": {
+    "t1": {
+      "head": 194.0
+    }
+  },
+  "topology": {
+    "edges": [
+      {
+        "id": "e1",
+        "from": "r_upper",
+        "to": "r_middle"
+      },
+      {
+        "id": "e2",
+        "from": "r_middle",
+        "to": "r_upper"
+      },
+      {
+        "id": "e3",
+        "from": "r_middle",
+        "to": "r_lower"
+      },
+      {
+        "id": "e4",
+        "from": "r_lower",
+        "to": "r_middle"
+      },
+      {
+        "id": "e5",
+        "from": "r_lower",
+        "to": "t1"
+      }
+    ]
+  },
+  "inflows": {
+    "r_upper": {
+      "type": "list",
+      "values": [
+        41.97134,
+        11.250538,
+        23.751466,
+        21.160537,
+        46.823561,
+        43.834974,
+        54.608978,
+        14.346942,
+        31.096091,
+        11.489861,
+        20.931899,
+        35.267764,
+        11.326798,
+        19.941883,
+        42.494222,
+        37.247074,
+        21.022031,
+        39.463284,
+        50.471523,
+        10.324938,
+        50.290963,
+        44.90697,
+        27.012526,
+        17.773975
+      ]
+    },
+    "r_middle": {
+      "type": "list",
+      "values": [
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      ]
+    },
+    "r_lower": {
+      "type": "list",
+      "values": [
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      ]
+    }
+  },
+  "price_eur_per_mwh": [
+    86.09, 73.90, 88.03, 82.28, 82.84, 85.95,
+    106.32, 114.09, 118.21, 111.80, 94.17, 82.68,
+    74.02, 61.45, 40.28, 48.09, 59.63, 68.66,
+    91.20, 105.43, 106.85, 109.41, 111.13, 100.81
+  ],
+  "components": {
+    "c1": {
+      "type": "turbine",
+      "edge": "e1",
+      "q_max": 160.0,
+      "min_on_ratio": 0.35,
+      "power_planes": {
+        "format": "alpha_beta_gamma_delta",
+        "planes": [
+          [1.000000, -1.125717, 0.000000, 0.000000],
+          [1.000000, 0.000000, -0.748295, 0.000000]
+        ]
+      }
+    },
+    "c2": {
+      "type": "pump",
+      "edge": "e2",
+      "q_max": 146.0,
+      "min_on_ratio": 0.35,
+      "power_planes": {
+        "format": "alpha_beta_gamma_delta",
+        "planes": [
+          [-0.252012, 0.958463, 0.133562, -46.728087],
+          [-0.290656, 0.956711, 0.014965, -4.529716],
+          [-0.265728, 0.961988, 0.062985, -21.800483],
+          [-0.245961, 0.952556, 0.179279, -63.004177],
+          [-0.279122, 0.959730, 0.031777, -10.631365]
+        ]
+      }
+    },
+    "c3": {
+      "type": "spill",
+      "edge": "e1",
+      "q_max": 500.0,
+      "trigger": {
+        "head_reservoir": "r_upper",
+        "hp_ge": 540.65,
+        "q_component": "c1",
+        "q_ge": 160.0
+      }
+    },
+    "c4": {
+      "type": "turbine",
+      "edge": "e3",
+      "q_max": 160.0,
+      "min_on_ratio": 0.35,
+      "power_planes": {
+        "format": "alpha_beta_gamma_delta",
+        "planes": [
+          [1.000000, -0.549997, 0.000000, 0.000000],
+          [1.000000, 0.000000, -0.748295, 0.000000]
+        ]
+      }
+    },
+    "c5": {
+      "type": "pump",
+      "edge": "e4",
+      "q_max": 146.0,
+      "min_on_ratio": 0.35,
+      "power_planes": {
+        "format": "alpha_beta_gamma_delta",
+        "planes": [
+          [-0.252012, 0.958463, 0.133562, -46.728087],
+          [-0.290656, 0.956711, 0.014965, -4.529716],
+          [-0.265728, 0.961988, 0.062985, -21.800483],
+          [-0.245961, 0.952556, 0.179279, -63.004177],
+          [-0.279122, 0.959730, 0.031777, -10.631365]
+        ]
+      }
+    },
+    "c6": {
+      "type": "spill",
+      "edge": "e3",
+      "q_max": 500.0,
+      "trigger": {
+        "head_reservoir": "r_middle",
+        "hp_ge": 319.95,
+        "q_component": "c4",
+        "q_ge": 160.0
+      }
+    },
+    "c7": {
+      "type": "turbine",
+      "edge": "e5",
+      "q_max": 55.0,
+      "min_on_ratio": 0.35,
+      "power_planes": {
+        "format": "alpha_beta_gamma_delta",
+        "planes": [
+          [1.000000, -0.075781, 0.000000, 0.000000],
+          [1.000000, 0.000000, -0.400765, 0.000000]
+        ]
+      }
+    },
+    "c8": {
+      "type": "spill",
+      "edge": "e5",
+      "q_max": 500.0,
+      "trigger": {
+        "head_reservoir": "r_lower",
+        "hp_ge": 204.35,
+        "q_component": "c7",
+        "q_ge": 55.0
+      }
+    }
+  },
+  "initial_flows": {
+    "c1": null,
+    "c2": null,
+    "c3": null,
+    "c4": null,
+    "c5": null,
+    "c6": null,
+    "c7": null,
+    "c8": null
+  },
+  "constraints": {
+    "exclusive": [
+      ["c1", "c2"],
+      ["c4", "c5"]
+    ],
+    "soft_bounds": {
+      "reservoirs": ["r_upper", "r_middle", "r_lower"]
+    }
+  },
+  "objectives": {
+    "lexicographic": [
+      "min_total_safety_violation",
+      "max_net_power",
+      "max_revenue"
+    ]
+  }
+}
