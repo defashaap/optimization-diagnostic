@@ -1,8 +1,8 @@
 {
   "user_alternative_constraints": {
-    "c1": { "on": [5], "off": [] },
+    "c1": { "on": [], "off": [] },
     "c2": { "on": [], "off": [] },
-    "c3": { "on": [], "off": [] },
+    "c3": { "on": [12, 13, 14], "off": [] },
     "c4": { "on": [], "off": [] }
   },
   "user_spill_control": {
