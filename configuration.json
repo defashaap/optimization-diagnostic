@@ -1,0 +1,6 @@
+{
+  "baseline": "Configuration/baseline_config.json",
+  "alternative": "Scenario/Module_Test/06_3R.json",
+  "solver": "gurobi",
+  "output_folder": "Evaluation/Module_Power/gurobi_output"
+}
