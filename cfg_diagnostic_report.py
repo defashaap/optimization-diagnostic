@@ -323,11 +323,11 @@ def describe_init_cond_index(idx_value, parsed_config):
     ]
 
     n_res = len(res_ids)
-    if 1 <= idx <= n_res:
-        rid = res_ids[idx - 1]
-        return f"initial storage of {res_label(rid, parsed_config)}"
-    if n_res < idx <= 2 * n_res:
-        rid = res_ids[idx - n_res - 1]
+    if 1 <= idx <= 2 * n_res:
+        reservoir_pos = (idx - 1) // 2
+        rid = res_ids[reservoir_pos]
+        if idx % 2 == 1:
+            return f"initial storage of {res_label(rid, parsed_config)}"
         return f"initial water level of {res_label(rid, parsed_config)}"
 
     flow_offset = 2 * n_res
