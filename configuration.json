@@ -1,6 +1,6 @@
 {
-  "baseline": "Configuration/baseline_config.json",
-  "alternative": "Scenario/Module_Test/06_3R.json",
-  "solver": "gurobi",
-  "output_folder": "Evaluation/Module_Power/gurobi_output"
+  "baseline": "PSH_Configuration/baseline_config.json",
+  "alternative": "Scenarios/Module_Test/04_B.json",
+  "solver": "highs",
+  "output_folder": "Evaluation/Module_Power/highs_output"
 }
