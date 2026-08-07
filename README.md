@@ -17,13 +17,13 @@ Typical workflow:
 
 1. Define a baseline system configuration JSON.
 2. Define a user scenario JSON with forced unit schedules.
-3. Select the solver and output folder in `run_config.json`.
+3. Select the solver and output folder in `configuration.json`.
 4. Run the optimizer.
 5. Read the generated diagnostic JSON report.
 
 ## Quick Start
 
-Edit [run_config.json]:
+Edit [configuration.json]:
 
 ```json
 {
@@ -53,7 +53,7 @@ The run will:
 ### Core workflow
 
 - `cfg_main.py`  
-  Main entry point. Loads `run_config.json`, reads the baseline and alternative files, runs both scenarios, prints terminal output, and writes the final diagnostic JSON report.
+  Main entry point. Loads `configuration.json`, reads the baseline and alternative files, runs both scenarios, prints terminal output, and writes the final diagnostic JSON report.
 
 - `cfg_model_builder.py`
   Builds the Pyomo model from JSON input. Parses reservoirs, topology, components, inflows, spill logic, user constraints, and lexicographic objectives.
