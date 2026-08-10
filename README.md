@@ -22,8 +22,25 @@ Typical workflow:
 5. Read the generated diagnostic JSON report.
 
 ## Quick Start
+To run the project on a new computer:
 
-Edit [configuration.json]:
+1. Create and activate a new virtual environment.
+2. Use Python `3.13` if possible. Python `>=3.11` should also work.
+3. Install the dependencies from `requirements.txt`.
+4. Check that the `baseline` and `alternative` paths in `configuration.json` exactly match the filenames and directories in this repository.
+5. Run `python cfg_main.py`.
+
+Example setup:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python --version
+pip install -r requirements.txt
+python cfg_main.py
+```
+
+Edit 'configuration.json':
 
 ```json
 {
